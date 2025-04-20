@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dinner Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <nav class="bg-orange-500 flex justify-between items-center px-6 py-3 shadow-md">
+    <div class="flex space-x-6">
+      <a href="index.html" class="text-white font-semibold hover:bg-orange-600 px-4 py-2 rounded">All Menus</a>
+      <a href="breakfast.html" class="text-white font-semibold hover:bg-orange-600 px-4 py-2 rounded">Breakfast</a>
+      <a href="lunch.html" class="text-white font-semibold hover:bg-orange-600 px-4 py-2 rounded">Lunch</a>
+      <a href="dinner.html" class="text-white font-semibold hover:bg-orange-600 px-4 py-2 rounded bg-orange-700">Dinner</a>
+      <a href="vegetarian.html" class="text-white font-semibold hover:bg-orange-600 px-4 py-2 rounded">Vegetarian</a>
+    </div>
+    <a href="login.html" class="text-white font-semibold hover:underline">Login</a>
+  </nav>
+
+  <div class="max-w-3xl mx-auto mt-10 bg-white rounded-lg shadow-md p-6" id="menu">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">Dinner Menu</h1>
+  </div>
+
+  <script>
+    async function fetchMenu() {
+      const response = await fetch("http://localhost:8080/supper");
+      const items = await response.json();
+      const container = document.getElementById("menu");
+
+      items.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "border-b border-gray-300 pb-4 mb-4";
+        div.innerHTML = `
+          <div class="text-lg font-semibold text-gray-800">${item.name}</div>
+          <div class="text-gray-600">${item.description}</div>
+          <div class="text-blue-600 font-bold">$${item.price}</div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    fetchMenu();
+  </script>
+</body>
+</html>

@@ -45,36 +45,47 @@
     </div>
   </form>
 
-  <p id="message" class="mt-4 text-red-600 font-medium"></p>
+  <p id="message" class="mt-4 text-green-600 font-medium"></p>
 </div>
-
 <script>
-  const form = document.getElementById("signupForm");
-  const message = document.getElementById("message");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    const params = new URLSearchParams({ email, username, password });
-
-    try {
-      const response = await fetch("http://localhost:8080/auth/signup?" + params.toString(), {
-        method: "POST"
-      });
-
-      if (response.ok) {
-        window.location.href = "login.html";
-      } else {
+    const form = document.getElementById("signupForm");
+    const message = document.getElementById("message");
+  
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+  
+      const params = new URLSearchParams({ email, username, password });
+  
+      try {
+        const response = await fetch("http://localhost:8080/auth/signup?" + params.toString(), {
+          method: "POST"
+        });
+  
         const text = await response.text();
-        message.textContent = "Signup failed: " + text;
+  
+        if (response.ok) {
+          message.textContent = "Signup successful! Redirecting to login...";
+          message.classList.remove("text-red-600");
+          message.classList.add("text-green-600");
+  
+          // ✅ Wait 2.5 seconds then redirect
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 2500);
+        } else {
+          message.textContent = "Signup failed: " + text;
+          message.classList.remove("text-green-600");
+          message.classList.add("text-red-600");
+        }
+      } catch (err) {
+        message.textContent = "Error connecting to server.";
+        message.classList.remove("text-green-600");
+        message.classList.add("text-red-600");
       }
-    } catch (err) {
-      message.textContent = "Could not connect to server.";
-    }
-  });
-</script>
-</body>
+    });
+  </script>
+  </body>
 </html>

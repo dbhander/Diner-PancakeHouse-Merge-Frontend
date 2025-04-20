@@ -1,0 +1,69 @@
+.auth-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: left; /* ✅ key change */
+  }
+  
+  .auth-container h2,
+  .auth-container p {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  form.form-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  form label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .terms {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .red-btn, .green-btn {
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .red-btn {
+    background-color: #dc3545;
+  }
+  
+  .green-btn {
+    background-color: #28a745;
+  }
+  
+  .message {
+    margin-top: 20px;
+    color: green;
+  }
+  
