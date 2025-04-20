@@ -23,7 +23,7 @@
 
   <script>
     async function fetchMenu() {
-      const response = await fetch("http://localhost:8080/supper");
+      const response = await fetch("https://diner-pancakehouse-merge-backend-n1ps.onrender.com/supper");
       const items = await response.json();
       const container = document.getElementById("menu");
 

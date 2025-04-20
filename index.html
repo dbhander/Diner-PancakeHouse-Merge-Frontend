@@ -61,7 +61,7 @@
     const params = new URLSearchParams({ email, username, password });
 
     try {
-      const response = await fetch("http://localhost:8080/auth/signup?" + params.toString(), {
+      const response = await fetch("https://diner-pancakehouse-merge-backend-n1ps.onrender.com/auth/signup?" + params.toString(), {
         method: "POST"
       });
 
